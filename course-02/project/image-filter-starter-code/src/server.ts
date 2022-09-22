@@ -1,4 +1,5 @@
 import express from 'express';
+import { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 import { exit } from 'process';
@@ -38,26 +39,26 @@ import { exit } from 'process';
   // Displays a simple message to the user
 
   // Root URI call
-  app.get( "/", ( req, res ) => {
+  app.get( "/", (req:Request, res:Response ) => {
     res.status(200).send("Welcome to the Cloud!");
   } );
 
-  app.get( "/filteredimage", async ( req, res ) => {
+  app.get( "/filteredimage", async (req:Request,  res:Response) => {
 
       const params = req.query;
-      const image_url = params.image_url;
+      const image_url:string = params.image_url;
       
       if(!image_url){
         res.send("image url is missing");
         exit(1);
       }
 
-      const imagePath = filterImageFromURL(image_url);
+      const image_path:Promise<string> = filterImageFromURL(image_url);
     
-      res.sendFile((await imagePath).toString());
+      res.sendFile((await image_path).toString());
       
       res.on("finish", async function() {
-        deleteLocalFiles([(await imagePath).toString()]);
+        deleteLocalFiles([(await image_path).toString()]);
     });
 
   } );

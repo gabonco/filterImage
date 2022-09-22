@@ -47,7 +47,7 @@ Prevent requests without valid authentication headers.
 Add your own domain name and have it point to the running services (try adding a subdomain name to point to the processing server)
 > !NOTE: Domain names are not included in AWS’ free tier and will incur a cost.
 
-# Project 2 Implematation informatioons
+# Project 2 Implementation informations
 1. Endpoint url : http://udagram-abou-filterimage-dev.us-east-1.elasticbeanstalk.com/filteredimage
 2. Tested image : https://image.shutterstock.com/image-photo/mother-tying-daughters-shoelaces-she-600w-1326683405.jpg
-3. Request Exememple : http://udagram-abou-filterimage-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://image.shutterstock.com/image-photo/mother-tying-daughters-shoelaces-she-600w-1326683405.jpg
+3. Request Exemple : http://udagram-abou-filterimage-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://image.shutterstock.com/image-photo/mother-tying-daughters-shoelaces-she-600w-1326683405.jpg

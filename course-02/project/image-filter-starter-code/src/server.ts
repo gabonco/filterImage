@@ -36,6 +36,12 @@ import { exit } from 'process';
   
   // Root Endpoint
   // Displays a simple message to the user
+
+  // Root URI call
+  app.get( "/", ( req, res ) => {
+    res.status(200).send("Welcome to the Cloud!");
+  } );
+
   app.get( "/filteredimage", async ( req, res ) => {
 
       const params = req.query;

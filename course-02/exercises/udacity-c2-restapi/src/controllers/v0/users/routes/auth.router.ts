@@ -12,13 +12,17 @@ import { config } from '../../../../config/config';
 const router: Router = Router();
 
 async function generatePassword(plainTextPassword: string): Promise<string> {
-    //@TODO Use Bcrypt to Generated Salted Hashed Passwords
-    return "NotYetImplemented"
+   
+    const rounds = 10;
+    const salt = await bcrypt.genSalt(rounds);
+    const hash = await bcrypt.hash(plainTextPassword, salt);
+
+    return hash;
 }
 
 async function comparePasswords(plainTextPassword: string, hash: string): Promise<boolean> {
-    //@TODO Use Bcrypt to Compare your password to your Salted Hashed Password
-    return true
+   
+    return await bcrypt.compare(plainTextPassword, hash);
 }
 
 function generateJWT(user: User): string {
@@ -41,7 +45,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     
     // const token = token_bearer[1];
 
-    // return jwt.verify(token, "hello", (err, decoded) => {
+    // return jwt.verify(token, config.jwt.secret , (err, decoded) => {
     //   if (err) {
     //     return res.status(500).send({ auth: false, message: 'Failed to authenticate.' });
     //   }
